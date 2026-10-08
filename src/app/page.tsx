@@ -1,5 +1,7 @@
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { MotionOrchestrator } from "@/components/motion/motion-orchestrator";
+import { PageLoader } from "@/components/motion/page-loader";
 import { Cta } from "@/components/sections/cta";
 import { Faq } from "@/components/sections/faq";
 import { Features } from "@/components/sections/features";
@@ -15,6 +17,7 @@ import { Trust } from "@/components/sections/trust";
 export default function HomePage() {
   return (
     <>
+      <PageLoader />
       <SiteHeader />
       <main className="overflow-x-clip">
         <Hero />
@@ -30,6 +33,8 @@ export default function HomePage() {
         <Cta />
       </main>
       <SiteFooter />
+      {/* Rendered in the page segment so its effects run only after these sections hydrate. */}
+      <MotionOrchestrator />
     </>
   );
 }

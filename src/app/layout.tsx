@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Nastaliq_Urdu, Plus_Jakarta_Sans } from "next/font/google";
 
-import { MotionOrchestrator } from "@/components/motion/motion-orchestrator";
-import { PageLoader } from "@/components/motion/page-loader";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
 import { siteConfig } from "@/content/site";
 import "./globals.css";
@@ -28,11 +26,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${jakarta.variable} ${nastaliq.variable}`}>
       <body>
-        <SmoothScroll>
-          <PageLoader />
-          {children}
-          <MotionOrchestrator />
-        </SmoothScroll>
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );
