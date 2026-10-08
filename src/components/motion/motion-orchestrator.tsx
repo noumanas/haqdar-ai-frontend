@@ -50,7 +50,7 @@ export function MotionOrchestrator() {
 
       setupHeader();
       setupReveals();
-      setupSplitHeadings();
+      setupSplitHeadings(contextSafe!);
       setupParallax();
       setupDraws();
 
@@ -115,7 +115,7 @@ function markLoaderDone() {
 /** Runs as the loader lifts away; fonts are loaded, so line breaks are final. */
 function playHeroIntro() {
   const title = document.querySelector("[data-hero-title]");
-  const split = title ? SplitText.create(title, { type: "lines", mask: "lines" }) : null;
+  const split = title ? splitLines(title) : null;
 
   gsap
     .timeline({
@@ -172,21 +172,33 @@ function setupReveals() {
   });
 }
 
-function setupSplitHeadings() {
+/**
+ * Wraps each line in a clipping mask for a slide-up reveal. Masks get the
+ * `split-line-mask` class, which globals.css pads so descenders aren't cut.
+ * Always `revert()` once the reveal ends so no clipping is left behind.
+ */
+function splitLines(el: Element) {
+  return SplitText.create(el, { type: "lines", mask: "lines", linesClass: "split-line" });
+}
+
+function setupSplitHeadings(contextSafe: gsap.ContextSafeFunc) {
   gsap.utils.toArray<HTMLElement>("[data-split]").forEach((heading) => {
-    SplitText.create(heading, {
-      type: "lines",
-      mask: "lines",
-      autoSplit: true,
-      onSplit: (split) =>
-        gsap.from(split.lines, {
-          yPercent: 110,
-          duration: 1,
-          ease: EASE.expo,
-          stagger: 0.08,
-          scrollTrigger: { trigger: heading, start: "top 88%", once: true },
-        }),
+    gsap.set(heading, { autoAlpha: 0 });
+
+    const reveal = contextSafe(() => {
+      const split = splitLines(heading);
+      gsap.set(heading, { autoAlpha: 1 });
+      gsap.from(split.lines, {
+        yPercent: 110,
+        duration: 1,
+        ease: EASE.expo,
+        stagger: 0.08,
+        onComplete: () => split.revert(),
+      });
     });
+
+    // Split on entry (fonts are loaded by then), so line breaks are always final.
+    ScrollTrigger.create({ trigger: heading, start: "top 88%", once: true, onEnter: () => reveal() });
   });
 }
 
