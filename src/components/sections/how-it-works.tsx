@@ -1,3 +1,4 @@
+import { AgentLoop } from "@/components/sections/agent-loop";
 import { Section, SectionHeading } from "@/components/shared/section";
 import { steps } from "@/content/site";
 import { toneSurface } from "@/lib/tones";
@@ -26,6 +27,8 @@ export function HowItWorks() {
           </li>
         ))}
       </ol>
+
+      <AgentLoop />
     </Section>
   );
 }

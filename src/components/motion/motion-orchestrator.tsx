@@ -16,7 +16,7 @@ import { EASE, gsap, MOTION_OK, ScrollTrigger, SplitText, useGSAP } from "@/lib/
  * - `data-reveal`         fades and lifts in when scrolled into view (batched)
  * - `data-split`          heading lines slide up through a mask
  * - `data-parallax="n"`   drifts by n × its height while scrolling past
- * - `data-draw`           line grows from the left as its list scrolls in
+ * - `data-draw[="y"]`     line grows (left→right, or top→bottom with "y") as its list scrolls in
  */
 export function MotionOrchestrator() {
   const lenisRef = useRef<Lenis | undefined>(undefined);
@@ -202,14 +202,22 @@ function setupParallax() {
 }
 
 function setupDraws() {
-  const lines = gsap.utils.toArray<HTMLElement>("[data-draw]");
-  if (!lines.length) return;
+  // Group lines by their list so each timeline draws with its own scroll progress.
+  const groups = new Map<Element, HTMLElement[]>();
+  gsap.utils.toArray<HTMLElement>("[data-draw]").forEach((line) => {
+    const list = line.closest("ol, ul") ?? line;
+    groups.set(list, [...(groups.get(list) ?? []), line]);
+  });
 
-  gsap.from(lines, {
-    scaleX: 0,
-    transformOrigin: "left center",
-    ease: "none",
-    stagger: 0.25,
-    scrollTrigger: { trigger: lines[0].closest("ol") ?? lines[0], start: "top 85%", end: "top 45%", scrub: true },
+  groups.forEach((lines, list) => {
+    const vertical = lines[0].dataset.draw === "y";
+    gsap.from(lines, {
+      ...(vertical ? { scaleY: 0, transformOrigin: "center top" } : { scaleX: 0, transformOrigin: "left center" }),
+      duration: 0.5,
+      ease: "power2.out",
+      stagger: 0.18,
+      // Play once rather than scrub, so a fully visible list is never left half-drawn.
+      scrollTrigger: { trigger: list, start: "top 80%", once: true },
+    });
   });
 }

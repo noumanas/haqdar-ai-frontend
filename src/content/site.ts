@@ -1,8 +1,10 @@
 import {
+  Bell,
   BookOpen,
   Check,
   FileText,
   Flag,
+  Loader,
   Lock,
   MessageCircle,
   Mic,
@@ -136,6 +138,70 @@ export const steps = {
       body: "Check the money you're owed, then follow the step-by-step guide to MOHRE's free complaint service.",
     },
   ] satisfies { tone: Tone; title: string; body: string }[],
+};
+
+export const agent = {
+  badge: { label: "Behind the chat", icon: Loader },
+  title: "Haqdar is an AI agent, not just a chatbot.",
+  body: "A chatbot only answers. Haqdar works on the worker's case: it understands the problem, decides which tools to use, takes the steps itself, checks its own work, and comes back later to follow up.",
+  loop: [
+    {
+      phase: "Listen",
+      title: "Understand",
+      body: "Turns the Urdu voice note or contract photo into the real problem, for example “late salary, 2 months”.",
+      tone: "sand",
+    },
+    {
+      phase: "Decide",
+      title: "Plan",
+      body: "Decides what is needed: which law to check, whether to calculate money, whether it is urgent.",
+      tone: "lilac",
+    },
+    {
+      phase: "Use tools",
+      title: "Act",
+      body: "Uses its tools on its own: reads the contract, searches the law, runs the calculator, opens the complaint guide.",
+      tone: "lime",
+    },
+    {
+      phase: "Verify",
+      title: "Check",
+      body: "Answers only with a cited rule, numbers come from tested code, and says “I don’t know” instead of guessing.",
+      tone: "peach",
+    },
+    {
+      phase: "Remember",
+      title: "Follow up",
+      body: "Remembers the case and messages the worker later: “Did you get your complaint number?”",
+      tone: "sand",
+    },
+  ] satisfies { phase: string; title: string; body: string; tone: Tone }[],
+  tools: {
+    title: "Tools the agent chooses from",
+    items: [
+      { label: "Urdu speech", icon: Mic },
+      { label: "Contract reader", icon: FileText },
+      { label: "Labour law search", icon: BookOpen },
+      { label: "Money calculator", icon: Wallet },
+      { label: "Urgent-case check", icon: TriangleAlert },
+      { label: "Complaint guide", icon: Flag },
+      { label: "Case memory", icon: Lock },
+      { label: "Follow-up reminders", icon: Bell },
+    ] satisfies { label: string; icon: LucideIcon }[],
+    note: "The agent picks the right tools for each message. A simple question may use one; a salary problem may use five in a row.",
+  },
+  example: {
+    title: "What the agent did · example",
+    prompt: "Worker: “My salary hasn’t come for two months.”",
+    events: [
+      { tag: "Heard", title: "Late salary, 2 months", body: "Urdu speech turned into text and a clear problem.", tone: "lime" },
+      { tag: "Decided", title: "Check the law, then the money", body: "Not urgent, but money may be missing.", tone: "lilac" },
+      { tag: "Acted", title: "Searched WPS rules · ran calculator", body: "Expected AED 6,750, paid AED 5,000.", tone: "lime" },
+      { tag: "Checked", title: "Rule cited, numbers from code", body: "AED 1,750 missing.", tone: "coral" },
+      { tag: "Replied", title: "Urdu voice answer + complaint guide", body: "Next step: file a free complaint with MOHRE.", tone: "lime" },
+      { tag: "7 days later", title: "Followed up on its own", body: "“Did you get your complaint number?”", tone: "lilac" },
+    ] satisfies { tag: string; title: string; body: string; tone: Tone }[],
+  },
 };
 
 export const features = {
