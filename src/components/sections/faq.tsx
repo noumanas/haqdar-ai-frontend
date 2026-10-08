@@ -12,7 +12,11 @@ export function Faq() {
 
         <Accordion type="single" collapsible defaultValue="item-0" className="gap-2.5">
           {faq.items.map((item, index) => (
-            <AccordionItem key={item.q} value={`item-${index}`} className="overflow-hidden rounded-[22px] border-none bg-white">
+            <AccordionItem
+              key={item.q}
+              value={`item-${index}`}
+              data-reveal
+              className="overflow-hidden rounded-[22px] border-none bg-white">
               <AccordionTrigger className="group min-h-16 items-center gap-3 rounded-[22px] px-5 text-[17px] font-bold hover:no-underline [&>svg[data-slot=accordion-trigger-icon]]:hidden!">
                 {item.q}
                 <span className="flex size-8 flex-none items-center justify-center rounded-full bg-sand transition-colors group-aria-expanded:bg-ink group-aria-expanded:text-lime">

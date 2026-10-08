@@ -13,7 +13,7 @@ export function Trust() {
 
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {trust.pillars.map(({ icon: Icon, title, body }) => (
-          <li key={title} className="flex flex-col gap-2.5 rounded-3xl bg-forest-deep p-6">
+          <li key={title} data-reveal className="flex flex-col gap-2.5 rounded-3xl bg-forest-deep p-6">
             <span className="flex size-11 items-center justify-center rounded-full bg-lime text-foreground">
               <Icon className="size-5" aria-hidden />
             </span>
@@ -23,7 +23,7 @@ export function Trust() {
         ))}
       </ul>
 
-      <p className="text-[13px] text-forest-mist">{trust.disclaimer}</p>
+      <p data-reveal className="text-[13px] text-forest-mist">{trust.disclaimer}</p>
     </Section>
   );
 }

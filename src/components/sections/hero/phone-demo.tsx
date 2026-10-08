@@ -20,6 +20,7 @@ export function PhoneDemo() {
     <div
       role="img"
       aria-label={DEMO_DESCRIPTION}
+      data-hero-phone
       className="relative aspect-[330/716] w-[min(330px,100%)] rounded-[58px] bg-[#1a1a1a] p-2.5 shadow-[0_30px_60px_rgb(10_30_24/0.35),inset_0_0_0_2px_#3a3a38]"
     >
       <HardwareButtons />
@@ -186,7 +187,9 @@ function Composer() {
 
 function FloatingCard() {
   return (
-    <div className="absolute top-[191px] -right-[72px] hidden items-center gap-2.5 rounded-[22px] bg-white px-3.5 py-3 shadow-[0_14px_30px_rgb(20_20_20/0.15)] [animation-delay:-2.5s] animate-float motion-reduce:animate-none sm:flex">
+    <div
+      data-hero-float
+      className="absolute top-[191px] -right-[72px] hidden items-center gap-2.5 rounded-[22px] bg-white px-3.5 py-3 shadow-[0_14px_30px_rgb(20_20_20/0.15)] [animation-delay:-2.5s] animate-float motion-reduce:animate-none sm:flex">
       <span className="flex size-9 flex-none items-center justify-center rounded-full bg-lime">
         <Flag className="size-4" aria-hidden />
       </span>

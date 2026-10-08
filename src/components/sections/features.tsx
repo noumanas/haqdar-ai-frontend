@@ -80,7 +80,13 @@ type FeatureCardProps = {
 
 function FeatureCard({ tone, title, body, children }: FeatureCardProps) {
   return (
-    <article className={cn("flex flex-col gap-[18px] rounded-[32px] p-7", toneSurface[tone])}>
+    <article
+      data-reveal
+      className={cn(
+        "flex flex-col gap-[18px] rounded-[32px] p-7 transition-transform duration-300 hover:-translate-y-1",
+        toneSurface[tone],
+      )}
+    >
       <div className="flex flex-col gap-2">
         <h3 className="text-[26px] font-extrabold tracking-[-0.02em]">{title}</h3>
         <p className={cn("text-base leading-[1.55]", toneMutedText[tone])}>{body}</p>

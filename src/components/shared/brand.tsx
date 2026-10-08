@@ -46,7 +46,7 @@ export function WhatsAppButton({ children, chip = "lime", className }: WhatsAppB
         {children}
         <span
           className={cn(
-            "flex size-11 flex-none items-center justify-center rounded-full text-foreground",
+            "flex size-11 flex-none items-center justify-center rounded-full text-foreground transition-transform duration-300 group-hover/button:translate-x-1",
             chip === "lime" ? "bg-lime" : "bg-white",
           )}
         >

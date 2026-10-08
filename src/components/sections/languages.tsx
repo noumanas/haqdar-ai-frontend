@@ -9,19 +9,19 @@ export function Languages() {
       <Container className="grid items-center gap-6 md:grid-cols-2">
         <div className="flex flex-col gap-3">
           <Eyebrow>{languages.eyebrow}</Eyebrow>
-          <h2 className="text-4xl leading-[1.1] font-extrabold tracking-[-0.03em]">{languages.title}</h2>
-          <p className="text-base leading-[1.55] text-muted-foreground">{languages.body}</p>
+          <h2 data-split className="text-4xl leading-[1.1] font-extrabold tracking-[-0.03em]">{languages.title}</h2>
+          <p data-reveal className="text-base leading-[1.55] text-muted-foreground">{languages.body}</p>
         </div>
 
         <ul className="flex flex-wrap gap-2.5" aria-label="Supported languages">
-          <li className={`${chip} bg-ink text-white`}>
+          <li data-reveal className={`${chip} bg-ink text-white`}>
             <span lang="ur" className="font-urdu">
               {languages.live.native}
             </span>
             {languages.live.label}
           </li>
           {languages.upcoming.map((language) => (
-            <li key={language} className={`${chip} bg-white`}>
+            <li key={language} data-reveal className={`${chip} bg-white`}>
               {language}
             </li>
           ))}

@@ -8,7 +8,10 @@ import { mainNav, siteConfig } from "@/content/site";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/80">
+    <header
+      data-header
+      className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur transition-shadow duration-300 supports-backdrop-filter:bg-background/80 data-[scrolled=true]:shadow-[0_8px_30px_rgb(20_20_20/0.06)]"
+    >
       <Container className="flex min-h-19 items-center justify-between gap-3 py-2.5">
         <Logo />
 
@@ -48,7 +51,7 @@ function MobileNav() {
           <Menu className="size-5" />
         </Button>
       </SheetTrigger>
-      <SheetContent side="right" className="gap-6 bg-background p-6">
+      <SheetContent side="right" data-lenis-prevent className="gap-6 bg-background p-6">
         <SheetTitle className="sr-only">Menu</SheetTitle>
         <Logo />
         <nav aria-label="Mobile" className="flex flex-col gap-1">

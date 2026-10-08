@@ -6,12 +6,15 @@ export function Cta() {
   return (
     <section id="start" className="pb-20">
       <Container>
-        <div className="relative grid items-center gap-8 overflow-hidden rounded-[40px] bg-lime px-6 py-14 sm:px-10 md:grid-cols-2">
+        <div
+          data-reveal
+          className="relative grid items-center gap-8 overflow-hidden rounded-[40px] bg-lime px-6 py-14 sm:px-10 md:grid-cols-2">
           <svg
             width="1100"
             height="360"
             viewBox="0 0 1100 360"
             aria-hidden
+            data-parallax="0.3"
             className="pointer-events-none absolute top-0 left-0"
           >
             <path
@@ -24,7 +27,7 @@ export function Cta() {
           </svg>
 
           <div className="relative flex flex-col gap-4">
-            <h2 className="text-[clamp(2.125rem,4.4vw,3.375rem)] leading-[1.04] font-extrabold tracking-[-0.04em]">
+            <h2 data-split className="text-[clamp(2.125rem,4.4vw,3.375rem)] leading-[1.04] font-extrabold tracking-[-0.04em]">
               {cta.title}
             </h2>
             <UrduText className="text-xl">{cta.urduLine}</UrduText>

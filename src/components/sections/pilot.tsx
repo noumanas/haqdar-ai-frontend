@@ -5,7 +5,7 @@ export function Pilot() {
   return (
     <section className="pb-20">
       <Container>
-        <div className="flex flex-col gap-5 rounded-[32px] bg-white p-8">
+        <div data-reveal className="flex flex-col gap-5 rounded-[32px] bg-white p-8">
           <div className="flex flex-wrap items-baseline justify-between gap-2">
             <Eyebrow>{pilot.eyebrow}</Eyebrow>
             <span className="text-[13px] text-stone">{pilot.note}</span>

@@ -12,7 +12,11 @@ export function HowItWorks() {
         {steps.items.map((step, index) => (
           <li
             key={step.title}
-            className={cn("flex min-h-60 flex-col gap-3 rounded-[28px] p-[26px]", toneSurface[step.tone])}
+            data-reveal
+            className={cn(
+              "flex min-h-60 flex-col gap-3 rounded-[28px] p-[26px] transition-transform duration-300 hover:-translate-y-1",
+              toneSurface[step.tone],
+            )}
           >
             <span className="flex size-11 items-center justify-center rounded-full bg-ink text-[17px] font-extrabold text-lime">
               {index + 1}

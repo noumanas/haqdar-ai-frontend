@@ -17,7 +17,7 @@ export function Problem() {
 
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {problem.issues.map((issue) => (
-          <li key={issue.title} className="flex flex-col gap-2.5 rounded-3xl bg-white p-[22px]">
+          <li key={issue.title} data-reveal className="flex flex-col gap-2.5 rounded-3xl bg-white p-[22px]">
             <IconTile icon={issue.icon} className={toneSurface[issue.tone]} />
             <h3 className="mt-1 text-lg font-bold tracking-[-0.01em]">{issue.title}</h3>
             <p className="text-[15px] leading-[1.55] text-muted-foreground">{issue.body}</p>
@@ -38,7 +38,7 @@ function Comparison({ title, items, variant }: { title: string; items: string[];
   const Icon = isAfter ? Check : X;
 
   return (
-    <div className={cn("flex flex-col gap-3.5 rounded-[28px] p-7", isAfter ? "bg-forest text-white" : "bg-sand")}>
+    <div data-reveal className={cn("flex flex-col gap-3.5 rounded-[28px] p-7", isAfter ? "bg-forest text-white" : "bg-sand")}>
       <span className={cn("text-sm font-bold", isAfter ? "text-lime" : "text-muted-foreground")}>{title}</span>
       <ul className="flex flex-col gap-3 text-base leading-normal">
         {items.map((item) => (
