@@ -16,14 +16,27 @@ import {
 
 import type { Tone } from "@/lib/tones";
 
+/**
+ * Haqdar's WhatsApp number in international format, digits only (e.g. 971501234567).
+ * Read at build time; until it is set, the WhatsApp buttons scroll to the "Get started" section.
+ */
+const whatsappDigits = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "").replace(
+  /\D/g,
+  "",
+);
+
+/** The first message a worker sends, typed for them: "Assalam o Alaikum". */
+const WHATSAPP_GREETING = "السلام علیکم";
+
 export const siteConfig = {
   name: "Haqdar",
   tagline: "Know your rights at work in the UAE",
   description:
     "Haqdar is a free AI assistant on WhatsApp. Send a voice note or a photo of your job contract. Haqdar explains it in Urdu, checks the money you are owed, and guides you to the official labour ministry.",
-  // TODO: replace with the real wa.me link once the number is live.
-  whatsappUrl: "#start",
-  whatsappNumber: "[Haqdar number]",
+  whatsappUrl: whatsappDigits
+    ? `https://wa.me/${whatsappDigits}?text=${encodeURIComponent(WHATSAPP_GREETING)}`
+    : "#start",
+  whatsappNumber: whatsappDigits ? `+${whatsappDigits}` : "[Haqdar number]",
   partnersEmail: "[partners email]",
   mohre: {
     phone: "600590000",
@@ -43,6 +56,13 @@ export const mainNav: NavLink[] = [
   { label: "FAQ", href: "#faq" },
 ];
 
+/** The interactive demo page, highlighted in the nav and offered next to the WhatsApp call to action. */
+export const demoLink = {
+  label: "Try the demo",
+  heroLabel: "Try the demo first",
+  href: "/demo",
+} as const;
+
 export type IconItem = {
   icon: LucideIcon;
   title: string;
@@ -59,7 +79,8 @@ export const hero = {
   title: "Every worker in the UAE deserves to know their rights.",
   urduLine: "ہر مزدور کا حق، اس کی اپنی زبان میں",
   body: siteConfig.description,
-  disclaimer: "Not a lawyer. Haqdar guides you to MOHRE, the UAE labour ministry.",
+  disclaimer:
+    "Not a lawyer. Haqdar guides you to MOHRE, the UAE labour ministry.",
 };
 
 export const problem = {
@@ -194,12 +215,42 @@ export const agent = {
     title: "What the agent did · example",
     prompt: "Worker: “My salary hasn’t come for two months.”",
     events: [
-      { tag: "Heard", title: "Late salary, 2 months", body: "Urdu speech turned into text and a clear problem.", tone: "lime" },
-      { tag: "Decided", title: "Check the law, then the money", body: "Not urgent, but money may be missing.", tone: "lilac" },
-      { tag: "Acted", title: "Searched WPS rules · ran calculator", body: "Expected AED 6,750, paid AED 5,000.", tone: "lime" },
-      { tag: "Checked", title: "Rule cited, numbers from code", body: "AED 1,750 missing.", tone: "coral" },
-      { tag: "Replied", title: "Urdu voice answer + complaint guide", body: "Next step: file a free complaint with MOHRE.", tone: "lime" },
-      { tag: "7 days later", title: "Followed up on its own", body: "“Did you get your complaint number?”", tone: "lilac" },
+      {
+        tag: "Heard",
+        title: "Late salary, 2 months",
+        body: "Urdu speech turned into text and a clear problem.",
+        tone: "lime",
+      },
+      {
+        tag: "Decided",
+        title: "Check the law, then the money",
+        body: "Not urgent, but money may be missing.",
+        tone: "lilac",
+      },
+      {
+        tag: "Acted",
+        title: "Searched WPS rules · ran calculator",
+        body: "Expected AED 6,750, paid AED 5,000.",
+        tone: "lime",
+      },
+      {
+        tag: "Checked",
+        title: "Rule cited, numbers from code",
+        body: "AED 1,750 missing.",
+        tone: "coral",
+      },
+      {
+        tag: "Replied",
+        title: "Urdu voice answer + complaint guide",
+        body: "Next step: file a free complaint with MOHRE.",
+        tone: "lime",
+      },
+      {
+        tag: "7 days later",
+        title: "Followed up on its own",
+        body: "“Did you get your complaint number?”",
+        tone: "lilac",
+      },
     ] satisfies { tag: string; title: string; body: string; tone: Tone }[],
   },
 };
@@ -214,13 +265,17 @@ export const features = {
       { label: "Basic salary", value: "AED 1,500" },
       { label: "Annual leave", value: "30 days" },
     ],
-    flag: { label: "Working hours · check this", value: "10 h a day · legal limit 8" },
+    flag: {
+      label: "Working hours · check this",
+      value: "10 h a day · legal limit 8",
+    },
   },
   rightsAnswers: {
     title: "Rights answers",
     body: "Ask anything by voice. Every answer comes from official UAE sources and says which rule it is based on.",
     question: "Can my company keep my passport?",
-    answer: "No. Your employer is not allowed to keep it. Call MOHRE on 600590000.",
+    answer:
+      "No. Your employer is not allowed to keep it. Call MOHRE on 600590000.",
   },
   calculator: {
     title: "Money calculator",
@@ -299,7 +354,8 @@ export const trust = {
       body: "Haqdar never replaces the ministry and never contacts your employer. It helps you use the official system.",
     },
   ] satisfies IconItem[],
-  disclaimer: "Haqdar gives general information. It is not legal advice and not a law firm.",
+  disclaimer:
+    "Haqdar gives general information. It is not legal advice and not a law firm.",
 };
 
 export const languages = {
@@ -307,7 +363,14 @@ export const languages = {
   title: "Starting in Urdu. More languages next.",
   body: "Voice first, so workers who read little can still use it.",
   live: { native: "اردو", label: "Urdu · live" },
-  upcoming: ["Hindi · next", "Punjabi · next", "Bengali", "Malayalam", "Nepali", "Tagalog"],
+  upcoming: [
+    "Hindi · next",
+    "Punjabi · next",
+    "Bengali",
+    "Malayalam",
+    "Nepali",
+    "Tagalog",
+  ],
 };
 
 export const pilot = {
@@ -388,7 +451,8 @@ export const cta = {
 
 export const footer = {
   copyright: "© 2026 Haqdar",
-  blurb: "A free AI assistant that helps workers in the UAE understand their rights.",
+  blurb:
+    "A free AI assistant that helps workers in the UAE understand their rights.",
   columns: [
     {
       title: "Product",

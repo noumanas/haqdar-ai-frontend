@@ -1,10 +1,17 @@
 import { Menu } from "lucide-react";
+import Link from "next/link";
 
 import { Logo } from "@/components/shared/brand";
 import { Container } from "@/components/shared/section";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetClose, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { mainNav, siteConfig } from "@/content/site";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { demoLink, mainNav, siteConfig } from "@/content/site";
 
 export function SiteHeader() {
   return (
@@ -25,10 +32,21 @@ export function SiteHeader() {
               {link.label}
             </a>
           ))}
+          <Link
+            href={demoLink.href}
+            className="ml-1 flex h-10 items-center rounded-full bg-lime px-3.5 text-sm font-bold transition-colors hover:bg-forest-mist"
+          >
+            {demoLink.label}
+          </Link>
         </nav>
 
         <div className="flex items-center gap-2">
-          <Button asChild variant="outline" size="pill" className="hidden bg-white font-urdu font-normal sm:inline-flex">
+          <Button
+            asChild
+            variant="outline"
+            size="pill"
+            className="hidden bg-white font-urdu font-normal sm:inline-flex"
+          >
             <a href="#top" lang="ur">
               اردو
             </a>
@@ -47,17 +65,29 @@ function MobileNav() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline" size="icon-lg" className="size-11 rounded-full bg-white lg:hidden" aria-label="Open menu">
+        <Button
+          variant="outline"
+          size="icon-lg"
+          className="size-11 rounded-full bg-white lg:hidden"
+          aria-label="Open menu"
+        >
           <Menu className="size-5" />
         </Button>
       </SheetTrigger>
-      <SheetContent side="right" data-lenis-prevent className="gap-6 bg-background p-6">
+      <SheetContent
+        side="right"
+        data-lenis-prevent
+        className="gap-6 bg-background p-6"
+      >
         <SheetTitle className="sr-only">Menu</SheetTitle>
         <Logo />
         <nav aria-label="Mobile" className="flex flex-col gap-1">
           {mainNav.map((link) => (
             <SheetClose asChild key={link.href}>
-              <a href={link.href} className="flex h-12 items-center rounded-2xl px-4 text-base font-semibold hover:bg-white">
+              <a
+                href={link.href}
+                className="flex h-12 items-center rounded-2xl px-4 text-base font-semibold hover:bg-white"
+              >
                 {link.label}
               </a>
             </SheetClose>
@@ -65,11 +95,25 @@ function MobileNav() {
         </nav>
         <div className="mt-auto flex flex-col gap-2">
           <SheetClose asChild>
+            <Button
+              asChild
+              size="pill-lg"
+              className="bg-lime text-foreground hover:bg-forest-mist"
+            >
+              <Link href={demoLink.href}>{demoLink.label}</Link>
+            </Button>
+          </SheetClose>
+          <SheetClose asChild>
             <Button asChild size="pill-lg">
               <a href={siteConfig.whatsappUrl}>Try on WhatsApp</a>
             </Button>
           </SheetClose>
-          <Button asChild variant="outline" size="pill-lg" className="bg-white font-urdu font-normal">
+          <Button
+            asChild
+            variant="outline"
+            size="pill-lg"
+            className="bg-white font-urdu font-normal"
+          >
             <a href="#top" lang="ur">
               اردو
             </a>

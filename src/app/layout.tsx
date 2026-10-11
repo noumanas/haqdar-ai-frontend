@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Nastaliq_Urdu, Plus_Jakarta_Sans } from "next/font/google";
 
-import { SmoothScroll } from "@/components/motion/smooth-scroll";
 import { siteConfig } from "@/content/site";
 import "./globals.css";
 
@@ -25,9 +24,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${jakarta.variable} ${nastaliq.variable}`}>
-      <body>
-        <SmoothScroll>{children}</SmoothScroll>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

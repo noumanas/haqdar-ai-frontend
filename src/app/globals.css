@@ -69,6 +69,7 @@
 @theme {
   --color-sand: #eeeeeb;
   --color-paper: #f5f5f2;
+  --color-pebble: #ecece8;
   --color-ink: #161616;
   --color-ink-soft: #2f2f2c;
   --color-stone: #6b6b66;
@@ -87,6 +88,26 @@
   --color-lilac-ink: #3a2a40;
   --color-alert: #c2531e;
 
+  /* Admin portal */
+  --color-canvas: #f4f4f2;
+  --color-rail: #fafaf9;
+  --color-line: #e7e7e3;
+  --color-hairline: #f0f0ee;
+  --color-track: #eaeae6;
+  --color-ink-muted: #3f3f3b;
+  --color-brand-orange: #f07a28;
+  --color-signal: #2563eb;
+  --color-signal-soft: #e6eefd;
+  --color-signal-ink: #1d4ed8;
+  --color-signal-wash: #eef2fd;
+  --color-alarm: #e0357a;
+  --color-alarm-soft: #fce7f0;
+  --color-alarm-ink: #b0245e;
+  --color-notice: #fbf0e2;
+  --color-notice-line: #f0d3ae;
+  --color-notice-ink: #9a4a0b;
+  --color-notice-text: #3a2410;
+
   /* Hero phone demo: a 12s looping chat conversation */
   --animate-chat-voice: chat-voice 12s ease-out infinite;
   --animate-chat-typing: chat-typing 12s ease-out infinite;
@@ -99,6 +120,7 @@
   --animate-typing-dot: typing-dot 1s ease-in-out infinite;
   --animate-mic-pulse: mic-pulse 2.4s ease-in-out infinite;
   --animate-float: float 5s ease-in-out infinite;
+  --animate-bubble-in: bubble-in 0.35s ease-out both;
 
   @keyframes chat-voice {
     0%, 3% { opacity: 0; transform: translateY(14px); }
@@ -136,6 +158,10 @@
   @keyframes wave {
     0%, 100% { transform: scaleY(0.45); }
     50% { transform: scaleY(1); }
+  }
+  @keyframes bubble-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
   }
   @keyframes typing-dot {
     0%, 100% { opacity: 0.3; transform: translateY(0); }
