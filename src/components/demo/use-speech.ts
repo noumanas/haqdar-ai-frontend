@@ -39,7 +39,7 @@ const noSubscription = () => () => {};
 export const useBrowserCheck = (check: () => boolean) =>
   useSyncExternalStore(noSubscription, check, () => false);
 
-export type VoiceLanguage = "ur-PK" | "en-US";
+export type VoiceLanguage = "ar-AE" | "en-US";
 
 const RECOGNITION_ERRORS: Record<string, string> = {
   "not-allowed": "Allow the microphone in your browser to talk to Haqdar.",
@@ -126,9 +126,9 @@ export function useVoiceInput(
   };
 }
 
-export type SpokenPart = { text: string; lang: "en" | "ur" };
+export type SpokenPart = { text: string; lang: "en" | "ar" };
 
-/** Reads text aloud. Urdu is read only when the device has an Urdu voice. */
+/** Reads text aloud. Arabic is read only when the device has an Arabic voice. */
 export function useReadAloud() {
   const supported = useBrowserCheck(() => "speechSynthesis" in window);
 
@@ -146,7 +146,7 @@ export function useReadAloud() {
         const voice = voices.find((candidate) =>
           candidate.lang.toLowerCase().startsWith(part.lang),
         );
-        if (!voice && part.lang === "ur") continue;
+        if (!voice && part.lang === "ar") continue;
         const utterance = new SpeechSynthesisUtterance(part.text);
         utterance.lang = voice?.lang ?? "en-US";
         if (voice) utterance.voice = voice;

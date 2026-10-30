@@ -1,7 +1,7 @@
 import { ShieldCheck } from "lucide-react";
 import Link from "next/link";
 
-import { UrduText, WhatsAppButton } from "@/components/shared/brand";
+import { ArabicText, WhatsAppButton } from "@/components/shared/brand";
 import { Container } from "@/components/shared/section";
 import { Button } from "@/components/ui/button";
 import { demoLink, hero } from "@/content/site";
@@ -38,9 +38,9 @@ export function Hero() {
           >
             {hero.title}
           </h1>
-          <UrduText data-hero-item className="text-2xl">
-            {hero.urduLine}
-          </UrduText>
+          <ArabicText data-hero-item className="text-2xl">
+            {hero.arabicLine}
+          </ArabicText>
           <p
             data-hero-item
             className="max-w-[560px] text-[19px] leading-[1.55] text-muted-foreground"

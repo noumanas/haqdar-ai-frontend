@@ -15,7 +15,7 @@ export type DemoScenario = { id: string; title: string; subtitle: string };
 
 export type DemoMessage = {
   text: string;
-  urdu: string | null;
+  arabic: string | null;
   source: string | null;
   card: { label: string; value: string; tone: CardTone } | null;
   followUp: boolean;

@@ -1,4 +1,4 @@
-import { UrduText, WhatsAppButton } from "@/components/shared/brand";
+import { ArabicText, WhatsAppButton } from "@/components/shared/brand";
 import { Container } from "@/components/shared/section";
 import { cta } from "@/content/site";
 
@@ -30,7 +30,7 @@ export function Cta() {
             <h2 data-split className="text-[clamp(2.125rem,4.4vw,3.375rem)] leading-[1.04] font-extrabold tracking-[-0.04em]">
               {cta.title}
             </h2>
-            <UrduText className="text-xl">{cta.urduLine}</UrduText>
+            <ArabicText className="text-xl">{cta.arabicLine}</ArabicText>
             <div className="flex flex-wrap gap-3">
               <WhatsAppButton chip="white">{cta.button}</WhatsAppButton>
             </div>

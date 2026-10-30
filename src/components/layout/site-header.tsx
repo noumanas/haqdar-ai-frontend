@@ -45,10 +45,10 @@ export function SiteHeader() {
             asChild
             variant="outline"
             size="pill"
-            className="hidden bg-white font-urdu font-normal sm:inline-flex"
+            className="hidden bg-white font-arabic font-normal sm:inline-flex"
           >
-            <a href="#top" lang="ur">
-              اردو
+            <a href="#top" lang="ar">
+              العربية
             </a>
           </Button>
           <Button asChild size="pill" className="hidden sm:inline-flex">
@@ -112,10 +112,10 @@ function MobileNav() {
             asChild
             variant="outline"
             size="pill-lg"
-            className="bg-white font-urdu font-normal"
+            className="bg-white font-arabic font-normal"
           >
-            <a href="#top" lang="ur">
-              اردو
+            <a href="#top" lang="ar">
+              العربية
             </a>
           </Button>
         </div>

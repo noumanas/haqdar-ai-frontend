@@ -1,6 +1,6 @@
 import { ArrowRight, Flag, Mic, Play } from "lucide-react";
 
-import { LogoMark, UrduText } from "@/components/shared/brand";
+import { ArabicText, LogoMark } from "@/components/shared/brand";
 
 /** Heights (px) and delays (s) for the voice-note waveform bars. */
 const WAVEFORM = [
@@ -9,7 +9,7 @@ const WAVEFORM = [
 ] as const;
 
 const DEMO_DESCRIPTION =
-  "Haqdar running on a phone: a worker sends an Urdu voice note about late salary, Haqdar replies with the law, finds AED 1,750 missing, and suggests filing a complaint";
+  "Haqdar running on a phone: a worker sends an Arabic voice note about late salary, Haqdar replies with the law, finds AED 1,750 missing, and suggests filing a complaint";
 
 /**
  * A looping, CSS-only WhatsApp-style conversation shown in the hero.
@@ -77,7 +77,7 @@ function ChatHeader() {
       <LogoMark className="size-8 rounded-[10px]" />
       <span className="flex flex-1 flex-col">
         <span className="text-sm font-bold">Haqdar</span>
-        <span className="text-[11px] text-muted-foreground">Replies in Urdu voice</span>
+        <span className="text-[11px] text-muted-foreground">Replies in Arabic voice</span>
       </span>
       <span className="rounded-full bg-lime px-2 py-1 text-[10px] font-bold">Online</span>
     </div>
@@ -100,7 +100,7 @@ function VoiceNote() {
         </span>
         <span className="text-[11px] text-lime-ink">0:12</span>
       </span>
-      <UrduText className="text-right text-[13px] text-foreground">میری تنخواہ دو مہینے سے نہیں آئی</UrduText>
+      <ArabicText className="text-right text-[13px] text-foreground">لم أستلم راتبي منذ شهرين</ArabicText>
       <span className="text-[11px] text-lime-ink">“My salary hasn&apos;t come for two months.”</span>
     </div>
   );

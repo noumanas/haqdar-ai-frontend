@@ -60,7 +60,7 @@
 
   --font-sans: var(--font-jakarta), system-ui, sans-serif;
   --font-heading: var(--font-jakarta), system-ui, sans-serif;
-  --font-urdu: var(--font-nastaliq), serif;
+  --font-arabic: var(--font-naskh), serif;
 }
 
 /* ---------------------------------------------------------------------------

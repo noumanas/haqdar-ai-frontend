@@ -15,7 +15,7 @@ export function Languages() {
 
         <ul className="flex flex-wrap gap-2.5" aria-label="Supported languages">
           <li data-reveal className={`${chip} bg-ink text-white`}>
-            <span lang="ur" className="font-urdu">
+            <span lang="ar" className="font-arabic">
               {languages.live.native}
             </span>
             {languages.live.label}

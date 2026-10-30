@@ -92,8 +92,15 @@ export function Bubble({ entry }: { entry: ChatEntry }) {
   }
 }
 
-/** Urdu-script answers read right to left; English ones left to right. */
-const URDU_SCRIPT = /[\u0600-\u06FF]/;
+/** Arabic-script answers read right to left; English ones left to right. */
+const ARABIC_SCRIPT = /[\u0600-\u06FF]/;
+/** Letters Urdu uses and Arabic does not, to tag the right language for screen readers. */
+const URDU_LETTERS = /[\u0679\u0688\u0691\u06BA\u06BE\u06C1\u06D2]/;
+
+function scriptLang(text: string): "ar" | "ur" | undefined {
+  if (!ARABIC_SCRIPT.test(text)) return undefined;
+  return URDU_LETTERS.test(text) ? "ur" : "ar";
+}
 
 /** What Haqdar heard, shown under the visitor's own voice note. */
 function VoiceTranscript({ transcript }: { transcript?: string | null }) {
@@ -107,16 +114,16 @@ function VoiceTranscript({ transcript }: { transcript?: string | null }) {
   if (transcript === null) {
     return <span className="text-xs text-lime-ink">{copy.notHeard}</span>;
   }
-  const urdu = URDU_SCRIPT.test(transcript);
+  const lang = scriptLang(transcript);
   return (
     <span className="flex flex-col gap-0.5">
       <span className="text-[11px] text-lime-ink">{copy.heard}</span>
       <span
         dir="auto"
-        lang={urdu ? "ur" : undefined}
+        lang={lang}
         className={cn(
           "text-sm",
-          urdu ? "font-urdu leading-[2]" : "leading-normal",
+          lang ? "font-arabic leading-[1.9]" : "leading-normal",
         )}
       >
         {transcript}
@@ -150,7 +157,7 @@ function LiveReply({
   reply: LiveChatReply;
   voice: ReplyVoice;
 }) {
-  const urdu = URDU_SCRIPT.test(reply.reply);
+  const lang = scriptLang(reply.reply);
   const latin = !reply.translation;
   return (
     <div className="flex w-[92%] flex-col gap-4 self-start rounded-[28px] bg-white p-5 motion-safe:animate-bubble-in sm:p-6">
@@ -173,11 +180,11 @@ function LiveReply({
       <div className="flex flex-col gap-3">
         <div
           dir="auto"
-          lang={urdu ? "ur" : undefined}
+          lang={lang}
           className={cn(
             "flex flex-col text-foreground",
-            urdu
-              ? "gap-1 text-right font-urdu text-[21px] leading-[2.15]"
+            lang
+              ? "gap-1 text-right font-arabic text-[20px] leading-[1.9]"
               : latin
                 ? "gap-2 text-[16px] leading-relaxed"
                 : "gap-2 text-[18px] leading-relaxed",
@@ -313,17 +320,17 @@ function AgentBubble({
 }
 
 function AgentMessage({ message }: { message: DemoMessage }) {
-  const { text, urdu, source, card, followUp } = message;
+  const { text, arabic, source, card, followUp } = message;
   return (
     <AgentBubble meta={followUp ? copy.followUpMeta : copy.agentMeta}>
       <span className="text-sm leading-normal">{text}</span>
-      {urdu && (
+      {arabic && (
         <span
-          lang="ur"
+          lang="ar"
           dir="rtl"
-          className="text-right font-urdu text-sm leading-[1.9]"
+          className="text-right font-arabic text-sm leading-[1.8]"
         >
-          {urdu}
+          {arabic}
         </span>
       )}
       {source && (

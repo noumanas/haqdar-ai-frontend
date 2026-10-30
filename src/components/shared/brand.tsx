@@ -46,13 +46,13 @@ export function Logo({
   );
 }
 
-/** Urdu copy: right-to-left Nastaliq script with the generous line height it needs. */
-export function UrduText({ className, ...props }: ComponentProps<"p">) {
+/** Arabic copy: right-to-left Naskh script with the line height it needs. */
+export function ArabicText({ className, ...props }: ComponentProps<"p">) {
   return (
     <p
-      lang="ur"
+      lang="ar"
       dir="rtl"
-      className={cn("text-left font-urdu leading-[1.9] text-forest", className)}
+      className={cn("text-left font-arabic leading-[1.8] text-forest", className)}
       {...props}
     />
   );

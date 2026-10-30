@@ -26,7 +26,7 @@ const whatsappDigits = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "").replace(
 );
 
 /** The first message a worker sends, typed for them: "Assalam o Alaikum". */
-const WHATSAPP_GREETING = "السلام علیکم";
+const WHATSAPP_GREETING = "السلام عليكم";
 
 export const siteConfig = {
   name: "Haqdar",
@@ -77,7 +77,7 @@ export const hero = {
     { label: "On WhatsApp", icon: MessageCircle, tone: "lilac" },
   ] satisfies { label: string; icon: LucideIcon; tone: Tone }[],
   title: "Every worker in the UAE deserves to know their rights.",
-  urduLine: "ہر مزدور کا حق، اس کی اپنی زبان میں",
+  arabicLine: "حقّ كل عامل، بلغته الأم",
   body: siteConfig.description,
   disclaimer:
     "Not a lawyer. Haqdar guides you to MOHRE, the UAE labour ministry.",
@@ -360,10 +360,11 @@ export const trust = {
 
 export const languages = {
   eyebrow: "Languages",
-  title: "Starting in Urdu. More languages next.",
+  title: "Live in Arabic and Urdu. More languages next.",
   body: "Voice first, so workers who read little can still use it.",
-  live: { native: "اردو", label: "Urdu · live" },
+  live: { native: "العربية", label: "Arabic · live" },
   upcoming: [
+    "Urdu · live",
     "Hindi · next",
     "Punjabi · next",
     "Bengali",
@@ -444,7 +445,7 @@ export const faq = {
 
 export const cta = {
   title: "Know your rights in two minutes.",
-  urduLine: "واٹس ایپ پر حقدار سے بات کریں، بالکل مفت",
+  arabicLine: "تحدّث مع حقدار على واتساب، مجاناً تماماً",
   button: "Message Haqdar on WhatsApp",
   meta: `WhatsApp number: ${siteConfig.whatsappNumber} · Free · Urdu voice`,
 };

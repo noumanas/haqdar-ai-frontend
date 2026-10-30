@@ -47,10 +47,10 @@ type DemoChatProps = {
 /** What Haqdar says aloud for one of its chat entries. */
 function speechFor(entry: ChatEntry): SpokenPart[] {
   if (entry.kind === "message") {
-    const { text, urdu, card } = entry.message;
+    const { text, arabic, card } = entry.message;
     return [
       { text, lang: "en" },
-      ...(urdu ? [{ text: urdu, lang: "ur" as const }] : []),
+      ...(arabic ? [{ text: arabic, lang: "ar" as const }] : []),
       ...(card
         ? [{ text: `${card.label}: ${card.value}`, lang: "en" as const }]
         : []),
@@ -88,7 +88,7 @@ export function DemoChat({
   quotaHint,
 }: DemoChatProps) {
   const [mode, setMode] = useState<ChatMode>("choose");
-  const [language, setLanguage] = useState<VoiceLanguage>("ur-PK");
+  const [language, setLanguage] = useState<VoiceLanguage>("ar-AE");
   const [muted, setMuted] = useState(false);
   const section = useRef<HTMLElement>(null);
   const voicePlayed = useRef(new Set<number>());

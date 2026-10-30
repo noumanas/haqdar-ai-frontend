@@ -266,7 +266,7 @@ function VoiceControls({
               className={cn(
                 "min-h-8 cursor-pointer rounded-full px-3 text-xs font-semibold transition-colors",
                 ring,
-                option.lang === "ur" && "font-urdu font-normal",
+                option.lang === "ar" && "font-arabic font-normal",
                 language === option.id ? "bg-white shadow-sm" : "text-stone",
               )}
             >

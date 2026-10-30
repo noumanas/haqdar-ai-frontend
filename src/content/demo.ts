@@ -93,7 +93,7 @@ export const demoPage = {
     unsupported:
       "This browser can't listen. Try Chrome, Edge or Safari, or tap a reply or type.",
     languages: [
-      { id: "ur-PK", label: "اردو", lang: "ur" },
+      { id: "ar-AE", label: "العربية", lang: "ar" },
       { id: "en-US", label: "English", lang: "en" },
     ],
   },
@@ -140,7 +140,7 @@ export const caseStatusLabel: Record<CaseStatus, string> = {
 /** The first message in live chat; nothing is sent to the server until the visitor writes. */
 export const liveGreeting = {
   text: "Assalam o Alaikum! I am Haqdar. Ask me about late salary, overtime, end-of-service money, your contract or a MOHRE complaint. You can type, talk, or send a photo or PDF of your contract.",
-  urdu: "السلام علیکم! میں حقدار ہوں۔ اپنا مسئلہ لکھیں، بولیں یا معاہدے کی تصویر یا PDF بھیجیں۔",
+  arabic: "السلام عليكم! أنا حقدار. اكتب مشكلتك أو تحدّث بها، أو أرسل صورة أو ملف PDF لعقدك.",
 };
 
 /** One-tap starting questions for live chat. Each sends a real question to the agent. */
