@@ -25,6 +25,10 @@ import {
   type DemoError,
   type ReplyVoice,
 } from "./use-demo";
+import type { QuickReply } from "./chat-composer";
+
+/** Chip ids for the agent's follow-up suggestions, so they aren't mistaken for examples. */
+const SUGGESTION = "suggestion:";
 
 type PendingAction =
   | { kind: "send"; text: string; spoken: boolean }
@@ -359,6 +363,15 @@ export function useLiveChat() {
     else sendContract(action.photo);
   }
 
+  /** A chip is either a starting example or a follow-up the agent suggested. */
+  function pickChip(chip: QuickReply) {
+    if (chip.id.startsWith(SUGGESTION)) {
+      if (!activity) send(chip.label);
+    } else {
+      pickExample(chip.id);
+    }
+  }
+
   function pickExample(id: string) {
     const example = liveExamples.find((candidate) => candidate.id === id);
     if (!example || activity) return;
@@ -367,6 +380,7 @@ export function useLiveChat() {
   }
 
   const started = entries.some((entry) => entry.from === "user");
+  const last = entries.at(-1);
 
   return {
     entries,
@@ -375,15 +389,24 @@ export function useLiveChat() {
     progress,
     picked,
     remaining,
-    /** Before the first message, the examples double as quick replies in the chat. */
-    chips: started
-      ? []
-      : liveExamples.map(({ id, title }) => ({ id, label: title })),
+    /**
+     * Before the first message the examples double as quick replies; after an answer, the
+     * follow-up questions the agent suggested for it.
+     */
+    chips: !started
+      ? liveExamples.map(({ id, title }) => ({ id, label: title }))
+      : last?.kind === "live"
+        ? last.reply.suggestions.map((label, index) => ({
+            id: `${SUGGESTION}${index}`,
+            label,
+          }))
+        : [],
     send,
     sendContract,
     sendVoice,
     restart,
     retry,
     pickExample,
+    pickChip,
   };
 }

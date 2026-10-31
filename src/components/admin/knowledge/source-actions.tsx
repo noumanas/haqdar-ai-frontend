@@ -91,6 +91,9 @@ function SourceForm({
           name="body"
           required
           rows={5}
+          // Official articles run to thousands of characters: scroll inside the box so the
+          // dialog's other fields and the Save button stay on screen.
+          className="max-h-[45dvh] overflow-y-auto"
           defaultValue={article?.body}
           placeholder="The rule as the agent should state it, in plain English."
         />
@@ -122,7 +125,7 @@ function SourceForm({
           {state.error}
         </p>
       )}
-      <DialogFooter className="items-center sm:justify-between">
+      <DialogFooter className="sticky bottom-0 z-10 items-center bg-popover sm:justify-between">
         <div>{extraActions}</div>
         <Button type="submit" disabled={pending}>
           {pending ? "Saving…" : submitLabel}

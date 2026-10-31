@@ -13,6 +13,7 @@ import { useState, type ReactNode } from "react";
 
 import { demoPage } from "@/content/demo";
 import { demoApi } from "@/lib/demo/api";
+import { scriptLang } from "@/lib/demo/script";
 import type {
   DemoContractReading,
   DemoMessage,
@@ -90,16 +91,6 @@ export function Bubble({ entry }: { entry: ChatEntry }) {
         <LiveReply id={entry.id} reply={entry.reply} voice={entry.voice} />
       );
   }
-}
-
-/** Arabic-script answers read right to left; English ones left to right. */
-const ARABIC_SCRIPT = /[\u0600-\u06FF]/;
-/** Letters Urdu uses and Arabic does not, to tag the right language for screen readers. */
-const URDU_LETTERS = /[\u0679\u0688\u0691\u06BA\u06BE\u06C1\u06D2]/;
-
-function scriptLang(text: string): "ar" | "ur" | undefined {
-  if (!ARABIC_SCRIPT.test(text)) return undefined;
-  return URDU_LETTERS.test(text) ? "ur" : "ar";
 }
 
 /** What Haqdar heard, shown under the visitor's own voice note. */

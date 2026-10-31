@@ -88,7 +88,7 @@ function LiveDemo({
           activity={chat.activity}
           error={chat.error}
           canSend
-          onChip={(chip) => chat.pickExample(chip.id)}
+          onChip={chat.pickChip}
           onSend={chat.send}
           onContract={chat.sendContract}
           onRestart={chat.restart}

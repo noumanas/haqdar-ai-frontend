@@ -5,6 +5,7 @@ import { useRef, useState, type FormEvent } from "react";
 
 import { demoPage } from "@/content/demo";
 import { CONTRACT_TYPES } from "@/lib/demo/api";
+import { scriptLang } from "@/lib/demo/script";
 import { cn } from "@/lib/utils";
 
 import { useVoiceInput, type VoiceLanguage } from "./use-speech";
@@ -59,10 +60,13 @@ export function ChatComposer(props: ComposerProps) {
             <button
               key={chip.id}
               type="button"
+              dir="auto"
+              lang={scriptLang(chip.label)}
               onClick={() => onChip(chip)}
               className={cn(
-                "min-h-[42px] cursor-pointer rounded-full px-4 text-left text-sm font-semibold transition-colors motion-safe:animate-bubble-in",
+                "min-h-[42px] cursor-pointer rounded-full px-4 text-start text-sm font-semibold transition-colors motion-safe:animate-bubble-in",
                 ring,
+                scriptLang(chip.label) && "font-arabic font-normal",
                 index === 0
                   ? "bg-ink text-white hover:bg-ink-soft"
                   : "bg-pebble hover:bg-line",

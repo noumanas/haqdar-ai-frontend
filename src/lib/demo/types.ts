@@ -67,6 +67,8 @@ export type LiveChatReply = {
   /** The answer in plain English when it was written in another language. */
   translation: string | null;
   citations: string[];
+  /** Up to 3 questions the visitor might ask next, in the answer's language. */
+  suggestions: string[];
   tools: string[];
   urgent: boolean;
   progress: { caseStep: CaseStep; agentStage: AgentStage };
