@@ -47,7 +47,7 @@ async function OverviewContent() {
   return (
     <>
       <div className="grid grid-cols-[repeat(auto-fit,minmax(170px,1fr))] gap-3">
-        <StatCard label="Active workers" value={workers.granted} hint={`${workers.pending} waiting for consent`} />
+        <StatCard label="Active workers" value={workers.granted} hint={`${workers.pending} not started yet`} />
         <StatCard
           label="Conversations"
           value={c.conversations}

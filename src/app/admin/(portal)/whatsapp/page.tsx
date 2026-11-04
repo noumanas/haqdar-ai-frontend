@@ -65,9 +65,9 @@ async function Summary() {
         <StatCard label="WhatsApp numbers" value={s.numbers} hint="Have messaged Haqdar" />
         <StatCard label={`Active, last ${PERIOD_DAYS} days`} value={s.activeSince} hint={`of ${s.numbers} numbers`} />
         <StatCard
-          label="Agreed to consent"
+          label="Signed up"
           value={s.consent.granted}
-          hint={`${s.consent.pending} waiting · ${s.consent.declined} declined`}
+          hint={`${s.consent.pending} not started · ${s.consent.declined} declined`}
         />
         <StatCard
           label="Messages stored"
@@ -276,7 +276,7 @@ async function Chat({ workerId }: { workerId: string }) {
       >
         {messages.length === 0 ? (
           <EmptyState title="Nothing stored for this number">
-            Messages are only kept after the worker agrees. The language menu and consent questions are never stored.
+            This number hasn’t picked a language yet. Messages are kept from then on; the language menu itself is not stored.
           </EmptyState>
         ) : (
           <ChatLog messages={messages} />

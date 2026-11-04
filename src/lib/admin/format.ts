@@ -26,9 +26,10 @@ export const LANGUAGE_LABELS: Record<Language, string> = { ur: "Urdu", hi: "Hind
 export const languageLabel = (language: Language | null): string =>
   language ? LANGUAGE_LABELS[language] : "Not chosen";
 
+/** New numbers are signed up automatically once they pick a language, so "pending" means not started yet. */
 export const CONSENT_LABELS: Record<ConsentStatus, string> = {
-  granted: "Agreed",
-  pending: "Waiting for consent",
+  granted: "Signed up",
+  pending: "Not started",
   declined: "Declined",
 };
 
