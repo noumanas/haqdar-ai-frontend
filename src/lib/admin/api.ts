@@ -12,6 +12,9 @@ import type {
   LawArticleInput,
   Message,
   Page,
+  WhatsAppChat,
+  WhatsAppContact,
+  WhatsAppSummary,
 } from "./types";
 
 const API_URL = process.env.HAQDAR_API_URL ?? "http://localhost:3000/api/v1";
@@ -75,6 +78,14 @@ export const adminApi = {
     request<Page<FlaggedMessage>>(withQuery("/admin/messages/flagged", query)),
   flagMessage: (messageId: string, flagged: boolean, reason?: string) =>
     request<Message>(`/admin/messages/${messageId}/flag`, json("PATCH", { flagged, reason })),
+
+  whatsappSummary: (days = 7) => request<WhatsAppSummary>(withQuery("/admin/whatsapp/summary", { days })),
+  whatsappContacts: (query: { page?: number; limit?: number; phone?: string } = {}) =>
+    request<Page<WhatsAppContact>>(withQuery("/admin/whatsapp/contacts", query)),
+  whatsappChat: (workerId: string) => request<WhatsAppChat>(`/admin/whatsapp/contacts/${workerId}`),
+  /** The full number. The backend logs every call. */
+  revealPhone: (workerId: string) =>
+    request<{ phone: string }>(`/admin/whatsapp/contacts/${workerId}/reveal`, { method: "POST" }),
 
   articles: (query: { verified?: boolean; page?: number; limit?: number } = {}) =>
     request<Page<LawArticle>>(withQuery("/admin/knowledge", query)),

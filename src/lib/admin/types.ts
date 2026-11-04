@@ -116,3 +116,40 @@ export type LawArticleInput = Pick<LawArticle, "reference" | "title" | "body" | 
   sourceUrl?: string;
   verified?: boolean;
 };
+
+/** Languages a worker can choose on WhatsApp. */
+export type Language = "ur" | "hi" | "bn" | "en";
+
+export type ConsentStatus = "pending" | "granted" | "declined";
+
+export interface WhatsAppSummary {
+  periodDays: number;
+  numbers: number;
+  activeSince: number;
+  consent: Record<ConsentStatus, number>;
+  /** Numbers per chosen language; "unset" have not chosen yet. */
+  languages: Partial<Record<Language | "unset", number>>;
+  inboundMessages: number;
+  outboundMessages: number;
+}
+
+export interface WhatsAppContact {
+  workerId: string;
+  /** E.g. "+971 ••• 4567"; the full number only comes from the reveal action. */
+  maskedPhone: string;
+  language: Language | null;
+  consentStatus: ConsentStatus;
+  firstContactAt: string;
+  lastActiveAt: string;
+  conversationCount: number;
+  messageCount: number;
+  inboundCount: number;
+  urgentCount: number;
+  lastMessage: { body: string; direction: "inbound" | "outbound"; kind: MessageKind; createdAt: string } | null;
+}
+
+export interface WhatsAppChat {
+  contact: WhatsAppContact;
+  /** Up to the latest 200 messages, oldest first. */
+  messages: Message[];
+}

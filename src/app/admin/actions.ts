@@ -66,6 +66,18 @@ export async function clearFlag(messageId: string): Promise<ActionState> {
   return attempt(() => adminApi.flagMessage(messageId, false));
 }
 
+// ── WhatsApp numbers ──────────────────────────────────────────────────
+
+/** Shows one worker's full number to the admin who asked. The backend logs every reveal. */
+export async function revealWhatsAppNumber(workerId: string): Promise<{ phone?: string; error?: string }> {
+  try {
+    return { phone: (await adminApi.revealPhone(workerId)).phone };
+  } catch (error) {
+    if (error instanceof AdminApiError) return { error: error.message };
+    throw error;
+  }
+}
+
 // ── Knowledge base ────────────────────────────────────────────────────
 
 function readArticle(form: FormData): LawArticleInput | string {

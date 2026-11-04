@@ -1,4 +1,4 @@
-import type { ConversationStatus, IssueType, LawTopic, MessageKind } from "./types";
+import type { ConsentStatus, ConversationStatus, IssueType, Language, LawTopic, MessageKind } from "./types";
 
 export const ISSUE_LABELS: Record<IssueType, string> = {
   unpaid_salary: "Late salary",
@@ -19,6 +19,17 @@ export const STATUS_LABELS: Record<ConversationStatus, string> = {
   guided_to_mohre: "Guided to MOHRE",
   answered: "Answered",
   reviewed: "Reviewed",
+};
+
+export const LANGUAGE_LABELS: Record<Language, string> = { ur: "Urdu", hi: "Hindi", bn: "Bengali", en: "English" };
+
+export const languageLabel = (language: Language | null): string =>
+  language ? LANGUAGE_LABELS[language] : "Not chosen";
+
+export const CONSENT_LABELS: Record<ConsentStatus, string> = {
+  granted: "Agreed",
+  pending: "Waiting for consent",
+  declined: "Declined",
 };
 
 export const CHANNEL_LABELS: Record<MessageKind, string> = { text: "Text", voice: "Voice", image: "Photo" };

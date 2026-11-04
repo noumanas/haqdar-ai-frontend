@@ -1,6 +1,16 @@
 "use client";
 
-import { BookOpen, CircleCheck, Globe, LayoutGrid, LogOut, MessageCircle, ShieldCheck, type LucideIcon } from "lucide-react";
+import {
+  BookOpen,
+  CircleCheck,
+  Globe,
+  LayoutGrid,
+  LogOut,
+  MessageCircle,
+  ShieldCheck,
+  Smartphone,
+  type LucideIcon,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
@@ -36,6 +46,7 @@ export function AdminSidebar({ reviewBadge }: { reviewBadge: ReactNode }) {
       items: [
         { label: "Overview", href: "/admin", icon: LayoutGrid },
         { label: "Conversations", href: "/admin/conversations", icon: MessageCircle, badge: reviewBadge },
+        { label: "WhatsApp", href: "/admin/whatsapp", icon: Smartphone },
       ],
     },
     {
